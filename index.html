@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wrytelo — Discover. Compare. Save.</title>
+  <meta name="description" content="Discover technology deals, buying guides, tutorials, AI tools, product comparisons, and technology updates with Wrytelo.">
+  <link rel="canonical" href="https://wrytelo.com/">
+  
+  <meta property="og:title" content="Wrytelo — Discover. Compare. Save.">
+  <meta property="og:description" content="Discover technology deals, buying guides, tutorials, AI tools, product comparisons, and technology updates with Wrytelo.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wrytelo.com/">
+  
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header>
+    <div class="container nav-container">
+      <a href="#home" class="logo" onclick="navigateTo('home')">Wrytelo<span>.</span></a>
+      <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle Navigation Menu">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a onclick="navigateTo('home')" class="nav-item" id="nav-home">Home</a></li>
+        <li><a onclick="navigateTo('deals')" class="nav-item" id="nav-deals">Tech Deals</a></li>
+        <li><a onclick="navigateTo('guides')" class="nav-item" id="nav-guides">Tech Guides</a></li>
+        <li><a onclick="navigateTo('ai')" class="nav-item" id="nav-ai">AI & Tech</a></li>
+        <li><a onclick="navigateTo('advertise')" class="nav-item" id="nav-advertise">Advertise</a></li>
+        <li><a onclick="navigateTo('donate')" class="nav-item" id="nav-donate">Donate</a></li>
+        <li><a onclick="navigateTo('about')" class="nav-item" id="nav-about">About</a></li>
+        <li><a onclick="navigateTo('contact')" class="nav-item" id="nav-contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="container" style="flex-grow: 1; margin-top: 1rem;">
+
+    <section id="view-home" class="page-view active">
+      <div class="hero">
+        <h1>Discover. Compare. Save.</h1>
+        <p>Your source for technology reviews, actionable buying guides, emerging AI insights, and curated digital deals.</p>
+      </div>
+
+      <div class="controls-bar">
+        <div class="search-box" style="flex-grow: 1; max-width: 400px;">
+          <input type="text" id="home-search" placeholder="Search guides, deals, or tools..." oninput="handleSearch(this.value)">
+        </div>
+        <div class="filter-tabs">
+          <button class="tab-btn active" onclick="filterCategory('all', this)">All</button>
+          <button class="tab-btn" onclick="filterCategory('deal', this)">Deals</button>
+          <button class="tab-btn" onclick="filterCategory('guide', this)">Guides</button>
+          <button class="tab-btn" onclick="filterCategory('ai', this)">AI Tools</button>
+        </div>
+      </div>
+
+      <div class="grid" id="content-grid"></div>
+    </section>
+
+    <section id="view-deals" class="page-view">
+      <div class="hero">
+        <h1>Tech Deals</h1>
+        <p>Hand-picked discounts on verified hardware, software, and accessories.</p>
+      </div>
+      <div class="grid" id="deals-grid"></div>
+    </section>
+
+    <section id="view-guides" class="page-view">
+      <div class="hero">
+        <h1>Tech Guides & Tutorials</h1>
+        <p>In-depth buying guides, comparisons, and technical walkthroughs.</p>
+      </div>
+      <div class="grid" id="guides-grid"></div>
+    </section>
+
+    <section id="view-ai" class="page-view">
+      <div class="hero">
+        <h1>AI & Emerging Tech</h1>
+        <p>Explore breakthrough AI platforms, automation workflows, and industry news.</p>
+      </div>
+      <div class="grid" id="ai-grid"></div>
+    </section>
+
+    <section id="view-advertise" class="page-view">
+      <div class="section-block">
+        <h1>Advertise with Wrytelo</h1>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Reach an active audience of tech enthusiasts, professionals, and buyers.</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+          <div style="background: var(--bg-main); padding: 1rem; border-radius: var(--radius); border: 1px solid var(--border);">
+            <h3>Banner Ads</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">High-visibility placements across key content hubs.</p>
+          </div>
+          <div style="background: var(--bg-main); padding: 1rem; border-radius: var(--radius); border: 1px solid var(--border);">
+            <h3>Sponsored Articles</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Deep-dive coverage of your platform or service.</p>
+          </div>
+          <div style="background: var(--bg-main); padding: 1rem; border-radius: var(--radius); border: 1px solid var(--border);">
+            <h3>Featured Products</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Highlight software or hardware on deal pages.</p>
+          </div>
+        </div>
+
+        <h2>Advertising Inquiry</h2>
+        <form action="https://formspree.io/f/xbjnqkyw" method="POST" style="margin-top: 1rem;">
+          <div class="form-group">
+            <label for="adv-business">Business Name</label>
+            <input type="text" id="adv-business" name="business_name" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="adv-contact">Contact Person</label>
+            <input type="text" id="adv-contact" name="contact_person" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="adv-email">Email Address</label>
+            <input type="email" id="adv-email" name="email" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="adv-phone">WhatsApp / Phone</label>
+            <input type="tel" id="adv-phone" name="phone" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="adv-type">Advertisement Type</label>
+            <select id="adv-type" name="ad_type" class="form-control" required>
+              <option value="banner">Banner Advertising</option>
+              <option value="article">Sponsored Article</option>
+              <option value="featured">Featured Product Placement</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="adv-msg">Message & Budget</label>
+            <textarea id="adv-msg" name="message" class="form-control" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn">Submit Inquiry</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="view-donate" class="page-view">
+      <div class="section-block" style="text-align: center;">
+        <h1>Support Wrytelo</h1>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+          Voluntary contributions help us maintain independent coverage, test hardware, and keep all content accessible to everyone without paywalls.
+        </p>
+        
+        <div style="background: var(--bg-main); display: inline-block; padding: 1.5rem 2.5rem; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 1.5rem;">
+          <p style="font-size: 0.9rem; color: var(--text-muted);">Airtel Money Merchant Code</p>
+          <p style="font-size: 2rem; font-weight: 700; color: var(--accent);">7169626</p>
+        </div>
+
+        <div>
+          <a href="https://wa.me/256709539676?text=I%20have%20made%20a%20support%20contribution%20to%20Wrytelo" target="_blank" class="btn">Confirm Contribution via WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-about" class="page-view">
+      <div class="section-block">
+        <h1>About Wrytelo</h1>
+        <p style="margin-bottom: 1rem;">
+          Wrytelo is an independent technology publication built to simplify purchasing decisions and technical discovery. We curate software tools, explain technical developments, and provide objective buying advice across consumer tech and software ecosystems.
+        </p>
+        <h2>Our Mission</h2>
+        <p style="margin-bottom: 1rem;">
+          To bridge technical knowledge gaps and provide clear, actionable information without promotional fluff or intrusive paywalls.
+        </p>
+      </div>
+    </section>
+
+    <section id="view-contact" class="page-view">
+      <div class="section-block">
+        <h1>Contact Us</h1>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+          Direct email: <a href="mailto:digitalmindsug.org@gmail.com" style="color: var(--primary);">digitalmindsug.org@gmail.com</a>
+        </p>
+
+        <form action="https://formspree.io/f/xbjnqkyw" method="POST">
+          <div class="form-group">
+            <label for="cnt-name">Full Name</label>
+            <input type="text" id="cnt-name" name="name" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="cnt-email">Email Address</label>
+            <input type="email" id="cnt-email" name="email" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="cnt-phone">WhatsApp / Phone</label>
+            <input type="tel" id="cnt-phone" name="phone" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="cnt-subject">Subject</label>
+            <input type="text" id="cnt-subject" name="subject" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="cnt-message">Message</label>
+            <textarea id="cnt-message" name="message" class="form-control" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="view-privacy" class="page-view">
+      <div class="section-block">
+        <h1>Privacy Policy</h1>
+        <p>Wrytelo operates as a static website and does not track personal user data directly through local storage or cookies. Form submissions are processed securely via Formspree.</p>
+      </div>
+    </section>
+
+    <section id="view-terms" class="page-view">
+      <div class="section-block">
+        <h1>Terms & Conditions</h1>
+        <p>Content on Wrytelo is provided for general informational purposes. Product pricing and availability mentioned in deal posts are subject to change by third-party vendor platforms.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Wrytelo<span>.</span></h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Discover technology deals, guides, and software updates on one open platform.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Navigation</h3>
+          <ul>
+            <li><a onclick="navigateTo('deals')">Tech Deals</a></li>
+            <li><a onclick="navigateTo('guides')">Tech Guides</a></li>
+            <li><a onclick="navigateTo('ai')">AI & Tech</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Organization</h3>
+          <ul>
+            <li><a onclick="navigateTo('advertise')">Advertise</a></li>
+            <li><a onclick="navigateTo('donate')">Donate</a></li>
+            <li><a onclick="navigateTo('about')">About Us</a></li>
+            <li><a onclick="navigateTo('contact')">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Legal</h3>
+          <ul>
+            <li><a onclick="navigateTo('privacy')">Privacy Policy</a></li>
+            <li><a onclick="navigateTo('terms')">Terms & Conditions</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="social-bar">
+        <div class="social-links">
+          <a href="https://t.me/tecub1" target="_blank" class="social-btn" rel="noopener">Telegram — TechHub1 🚀</a>
+          <a href="https://wa.me/256709539676" target="_blank" class="social-btn" rel="noopener">WhatsApp — Tech Hub</a>
+          <a href="https://www.instagram.com/meddisonofficial?igsi=eDc5djh6bGQ4cXZ0" target="_blank" class="social-btn" rel="noopener">Instagram — Meddison Official</a>
+        </div>
+      </div>
+
+      <p class="copyright">© 2026 Wrytelo. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
